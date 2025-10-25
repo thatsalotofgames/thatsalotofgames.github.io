@@ -395,6 +395,11 @@ const games = [
     html: "games/flash games/tosstheturtle.html",
   },
   {
+    name: "Uncanny Cat Golf",
+    image: "games/uncanny cat golf/logo.png",
+    html: "games/uncanny cat golf/index.html",
+  },
+  {
     name: "Untitled Zombie Shooter",
     image: "games/untitled zombie shooter/logo.png",
     html: "games/untitled zombie shooter/index.html",
