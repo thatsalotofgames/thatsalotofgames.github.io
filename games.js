@@ -355,6 +355,11 @@ const games = [
     html: "games/retro bowl college/index.html",
   },
   {
+    name: "retromine",
+    image: "games/retromine/logo.png",
+    html: "games/retromine/index.html",
+  },
+  {
     name: "Rooftop Snipers",
     image: "games/rooftop snipers/logo.png",
     html: "games/rooftop snipers/index.html",
