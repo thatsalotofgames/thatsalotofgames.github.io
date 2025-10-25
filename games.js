@@ -225,6 +225,11 @@ const games = [
     html: "games/grapple tongue/index.html",
   },
   {
+    name: "HELP! NO BRAKE",
+    image: "games/help no brake/logo.png",
+    html: "games/help no brake/index.html",
+  },
+  {
     name: "Hollowspire",
     image: "games/hollowspire/logo.png",
     html: "games/hollowspire/index.html",
