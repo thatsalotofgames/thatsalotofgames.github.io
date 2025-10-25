@@ -1,3 +1,3 @@
-this is my game site
 # thatsalotofgames.github.io
-# thatsalotofgames.github.io
+
+my game site
