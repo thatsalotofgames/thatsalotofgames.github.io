@@ -45,6 +45,11 @@ const games = [
     html: "games/basketball randoms/index.html",
   },
   {
+    name: "Basketball Stars",
+    image: "games/basketball stars/basketball-stars.png",
+    html: "games/basketball stars/index.html",
+  },
+  {
     name: "Big Tower Tiny Square",
     image: "games/big tower tiny square/logo.png",
     html: "games/big tower tiny square/index.html",
@@ -68,6 +73,11 @@ const games = [
     name: "Boxing Randoms",
     image: "games/boxing randoms/logo.png",
     html: "games/boxing randoms/index.html",
+  },
+  {
+    name: "Bloxorz",
+    image: "games/flash games/images/bloxorz.png",
+    html: "games/flash games/bloxorz.html",
   },
   {
     name: "Break The Tower",
@@ -423,6 +433,11 @@ const games = [
     name: "Thats Not My Neighbor",
     image: "games/thats not my neighbor/Thats not my neighbor.icon.png",
     html: "games/thats not my neighbor/index.html",
+  },
+  {
+    name: "The Impossible Quiz",
+    image: "games/flash games/images/theimpossiblequiz.png",
+    html: "games/flash games/theimpossiblequiz.html",
   },
   {
     name: "There Is No Game",
