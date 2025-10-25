@@ -375,6 +375,11 @@ const games = [
     html: "games/tempoverdose/index.html",
   },
   {
+    name: "Thats Not My Neighbor",
+    image: "games/thats not my neighbor/Thats not my neighbor.icon.png",
+    html: "games/thats not my neighbor/index.html",
+  },
+  {
     name: "There Is No Game",
     image: "games/there is no game/logo.png",
     html: "games/there is no game/index.html",
