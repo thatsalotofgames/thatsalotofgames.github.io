@@ -212,6 +212,11 @@
         font-size: 1.5em;
       }
 
+      .game-controls {
+        display: flex;
+        gap: 0;
+      }
+
       .fullscreen-btn {
         padding: 10px 20px;
         background: #2a2a2a;
@@ -223,6 +228,21 @@
       }
 
       .fullscreen-btn:hover {
+        background: #3a3a3a;
+      }
+
+      .blank-btn {
+        padding: 10px 20px;
+        background: #2a2a2a;
+        color: white;
+        border: 1px solid #333;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 15px;
+        margin-left: 10px;
+      }
+
+      .blank-btn:hover {
         background: #3a3a3a;
       }
 
@@ -284,7 +304,10 @@
       <div class="game-header">
         <button class="back-btn" id="backBtn">← Back</button>
         <div class="game-title" id="gameTitle"></div>
-        <button class="fullscreen-btn" id="fullscreenBtn">Fullscreen</button>
+        <div class="game-controls">
+          <button class="fullscreen-btn" id="fullscreenBtn">Fullscreen</button>
+          <button class="blank-btn" id="blankBtn">Open in Tab</button>
+        </div>
       </div>
       <iframe class="game-iframe" id="gameIframe"></iframe>
     </div>
@@ -300,10 +323,12 @@
       const gameTitle = document.getElementById("gameTitle");
       const backBtn = document.getElementById("backBtn");
       const fullscreenBtn = document.getElementById("fullscreenBtn");
+      const blankBtn = document.getElementById("blankBtn");
       const tabBtns = document.querySelectorAll(".tab-btn");
 
       let favorites = {};
       let currentFilter = "all";
+      let currentGameUrl = "";
 
       function loadFavorites() {
         const saved = localStorage.getItem("jupiterFavorites");
@@ -369,6 +394,7 @@
       function loadGame(game) {
         gameTitle.textContent = game.name;
         gameIframe.src = game.html;
+        currentGameUrl = game.html;
         mainContent.classList.add("hidden");
         gameContainer.classList.add("active");
       }
@@ -388,6 +414,26 @@
           gameIframe.webkitRequestFullscreen();
         } else if (gameIframe.msRequestFullscreen) {
           gameIframe.msRequestFullscreen();
+        }
+      });
+
+      blankBtn.addEventListener("click", async () => {
+        try {
+          const response = await fetch(currentGameUrl);
+          let html = await response.text();
+
+          // Get the full URL for the base tag
+          const gameUrl = new URL(currentGameUrl, window.location.href).href;
+
+          // Insert base tag after <head> tag
+          html = html.replace(/<head>/i, `<head><base href="${gameUrl}">`);
+
+          const win = window.open("about:blank");
+          win.document.write(html);
+          win.document.close();
+        } catch (error) {
+          console.error("Error opening game:", error);
+          window.open(currentGameUrl, "_blank");
         }
       });
 
