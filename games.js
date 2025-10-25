@@ -129,11 +129,7 @@ const games = [
     image: "games/death run 3d/logo.png",
     html: "games/death run 3d/index.html",
   },
-  {
-    name: "Dodge",
-    image: "games/dodge/logo.png",
-    html: "games/dodge/index.html",
-  },
+
   {
     name: "Dodge And Slash",
     image: "games/dodge and slash/logo.png",
