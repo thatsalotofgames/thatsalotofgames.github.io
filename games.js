@@ -276,8 +276,8 @@ const games = [
   },
   {
     name: "Papers, Please",
-    image: "games/flash games/images/PapersPlease.png",
-    html: "games/flash games/PapersPlease.html",
+    image: "games/flash games/images/papersplease.png",
+    html: "games/flash games/papersplease.html",
   },
   {
     name: "Pereelous",
