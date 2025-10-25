@@ -130,6 +130,11 @@ const games = [
     html: "games/death run 3d/index.html",
   },
   {
+    name: "Dodge",
+    image: "games/dodge/logo.png",
+    html: "games/dodge/index.html",
+  },
+  {
     name: "Dodge And Slash",
     image: "games/dodge and slash/logo.png",
     html: "games/dodge and slash/index.html",
@@ -290,6 +295,11 @@ const games = [
     html: "games/pereelous/index.html",
   },
   {
+    name: "Pico World Race",
+    image: "games/pico world race/logo.png",
+    html: "games/pico world race/index.html",
+  },
+  {
     name: "Picohot",
     image: "games/picohot/logo.png",
     html: "games/picohot/index.html",
@@ -338,6 +348,11 @@ const games = [
     name: "Slope",
     image: "games/slope/logo.png",
     html: "games/slope/index.html",
+  },
+  {
+    name: "Snekburd",
+    image: "games/snekburd/logo.png",
+    html: "games/snekburd/index.html",
   },
   {
     name: "Snow Rider 3D",
