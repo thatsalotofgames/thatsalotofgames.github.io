@@ -200,6 +200,11 @@ const games = [
     html: "games/gladihoppers/index.html",
   },
   {
+    name: "Gobble",
+    image: "games/gobble/logo.png",
+    html: "games/gobble/index.html",
+  },
+  {
     name: "Grapple Tongue",
     image: "games/grapple tongue/logo.png",
     html: "games/grapple tongue/index.html",
