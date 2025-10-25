@@ -16,7 +16,7 @@ function initializeFireBase() {
 function initializeFireBaseDev() {
   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyANZ0SDhqoc62msSooQFs3SEb4XbC7gvk4",
+    apiKey: "",
     authDomain: "dev.1v1.lol",
     databaseURL: "https://dev1v1.firebaseio.com",
     projectId: "dev1v1",
