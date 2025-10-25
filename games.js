@@ -265,6 +265,11 @@ const games = [
     html: "games/just one boss/index.html",
   },
   {
+    name: "Learn To Fly",
+    image: "games/flash games/images/learntofly.png",
+    html: "games/flash games/learntofly.html",
+  },
+  {
     name: "Level Devil",
     image: "games/level devil/logo.png",
     html: "games/level devil/index.html",
