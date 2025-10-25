@@ -90,6 +90,11 @@ const games = [
     html: "games/chessformer/index.html",
   },
   {
+    name: "Combo Pool",
+    image: "games/combo pool/logo.png",
+    html: "games/combo pool/index.html",
+  },
+  {
     name: "Cubefield",
     image: "games/flash games/images/cubefield.png",
     html: "games/flash games/cubefield.html",
@@ -129,7 +134,11 @@ const games = [
     image: "games/death run 3d/logo.png",
     html: "games/death run 3d/index.html",
   },
-
+  {
+    name: "Dire Decks",
+    image: "games/dire decks/logo.png",
+    html: "games/dire decks/index.html",
+  },
   {
     name: "Dodge And Slash",
     image: "games/dodge and slash/logo.png",
@@ -369,6 +378,11 @@ const games = [
     name: "Soccer Randoms",
     image: "games/soccer randoms/logo.png",
     html: "games/soccer randoms/index.html",
+  },
+  {
+    name: "Solar Sandbox",
+    image: "games/solar sandbox/logo.png",
+    html: "games/solar sandbox/index.html",
   },
   {
     name: "Station 141",
