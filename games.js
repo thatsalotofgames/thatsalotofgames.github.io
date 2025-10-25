@@ -276,6 +276,11 @@ const games = [
     html: "games/moto x3m spooky land/index.html",
   },
   {
+    name: "Mouse Required",
+    image: "games/mouse required/logo.png",
+    html: "games/mouse required/index.html",
+  },
+  {
     name: "Operius",
     image: "games/operius/logo.png",
     html: "games/operius/index.html",
