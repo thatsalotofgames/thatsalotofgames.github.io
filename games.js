@@ -306,6 +306,11 @@ const games = [
     html: "games/planet life/index.html",
   },
   {
+    name: "Poooooool",
+    image: "games/poooooool/logo.png",
+    html: "games/poooooool/index.html",
+  },
+  {
     name: "Protektor",
     image: "games/protektor/logo.png",
     html: "games/protektor/index.html",
