@@ -385,6 +385,11 @@ const games = [
     html: "games/rooftop snipers/index.html",
   },
   {
+    name: "Sandboxels",
+    image: "games/sandboxels/logo.png",
+    html: "games/sandboxels/index.html",
+  },
+  {
     name: "Serenitrove",
     image: "games/serenitrove/logo.png",
     html: "games/serenitrove/index.html",
