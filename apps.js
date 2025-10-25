@@ -36,8 +36,8 @@ const apps = [
   },
   {
     name: "LightSPED Killer Agent",
-    image: "apps/dataurlgenerator/logo.png",
-    html: "apps/dataurlgenerator/index.html",
+    image: "apps/lightspedkilleragent/logo.png",
+    html: "apps/lightspedkilleragent/index.html",
   },
   {
     name: "Lorem Ipsum Generator",
