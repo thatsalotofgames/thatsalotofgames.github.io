@@ -10,6 +10,11 @@ const games = [
     html: "games/10 minutes till dawn/index.html",
   },
   {
+    name: "101 Lives",
+    image: "games/101 lives/logo.png",
+    html: "games/101 lives/index.html",
+  },
+  {
     name: "2048",
     image: "games/2048/logo.png",
     html: "games/2048/index.html",
