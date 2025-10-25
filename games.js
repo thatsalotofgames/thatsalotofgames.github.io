@@ -70,6 +70,11 @@ const games = [
     html: "games/bio tank/index.html",
   },
   {
+    name: "Bitlife",
+    image: "games/bitlife/logo.png",
+    html: "games/bitlife/index.html",
+  },
+  {
     name: "Boxing Randoms",
     image: "games/boxing randoms/logo.png",
     html: "games/boxing randoms/index.html",
