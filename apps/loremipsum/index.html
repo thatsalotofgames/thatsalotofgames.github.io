@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lorem Ipsum Generator</title>
+  <style>
+    :root{font-family: system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;}
+    body{max-width:900px;margin:36px auto;padding:18px;background:#fafafa;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.06)}
+    h1{font-size:20px;margin:0 0 12px}
+    .controls{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+    label{display:flex;flex-direction:column;font-size:13px}
+    input[type=number], select, button{padding:8px 10px;border-radius:8px;border:1px solid #ddd}
+    button{cursor:pointer}
+    .actions{display:flex;gap:8px}
+    #output{white-space:pre-wrap;background:#fff;border:1px solid #e6e6e6;padding:16px;border-radius:10px;min-height:160px}
+    footer{margin-top:12px;font-size:13px;color:#666}
+  </style>
+</head>
+<body>
+  <h1>Simple Lorem Ipsum Generator</h1>
+  <p>Choose how many paragraphs (or words) to generate, then hit <strong>Generate</strong>. Use <em>Copy</em> or <em>Download</em> to save the text.</p>
+
+  <div class="controls">
+    <label>
+      Count
+      <input id="count" type="number" min="1" max="50" value="3">
+    </label>
+
+    <label>
+      Mode
+      <select id="mode">
+        <option value="paragraph">Paragraphs</option>
+        <option value="words">Words</option>
+      </select>
+    </label>
+
+    <label id="wordsPerLabel">
+      Words per paragraph
+      <input id="wordsPer" type="number" min="5" max="500" value="60">
+    </label>
+
+    <label style="align-items:center;flex-direction:row;gap:8px">
+      <input id="includeStart" type="checkbox" checked>
+      <span>Start with "Lorem ipsum"</span>
+    </label>
+
+    <div class="actions" style="margin-left:auto">
+      <button id="generate">Generate</button>
+      <button id="copy">Copy</button>
+      <button id="download">Download</button>
+    </div>
+  </div>
+
+  <div id="output" contenteditable="true" aria-label="Generated lorem ipsum text"></div>
+
+  <footer>Tip: You can edit the generated text directly in the box above.</footer>
+
+  <script>
+    const loremWords = (`lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum`).split(' ');
+
+    const $count = document.getElementById('count');
+    const $mode = document.getElementById('mode');
+    const $wordsPer = document.getElementById('wordsPer');
+    const $wordsPerLabel = document.getElementById('wordsPerLabel');
+    const $includeStart = document.getElementById('includeStart');
+    const $generate = document.getElementById('generate');
+    const $copy = document.getElementById('copy');
+    const $download = document.getElementById('download');
+    const $output = document.getElementById('output');
+
+    $mode.addEventListener('change', ()=>{
+      $wordsPerLabel.style.display = $mode.value === 'paragraph' ? 'flex' : 'none';
+    });
+
+    function randomWord(){
+      return loremWords[Math.floor(Math.random()*loremWords.length)];
+    }
+
+    function generateParagraph(wordsCount, includeStart){
+      const parts = [];
+      if(includeStart){
+        parts.push('Lorem ipsum dolor sit amet');
+      }
+      while(parts.join(' ').split(' ').length < (includeStart ? wordsCount+4 : wordsCount)){
+        parts.push(randomWord());
+      }
+      // join and ensure proper punctuation for readability
+      let text = parts.join(' ');
+      if(!text.endsWith('.')) text = text + '.';
+      // Capitalize first char
+      text = text.charAt(0).toUpperCase() + text.slice(1);
+      return text;
+    }
+
+    function generateWords(wordCount){
+      const arr = [];
+      for(let i=0;i<wordCount;i++) arr.push(randomWord());
+      let text = arr.join(' ');
+      if(!text.endsWith('.')) text = text + '.';
+      text = text.charAt(0).toUpperCase() + text.slice(1);
+      return text;
+    }
+
+    function generate(){
+      const count = Math.max(1, Math.min(100, parseInt($count.value) || 1));
+      const mode = $mode.value;
+      const wordsPer = Math.max(1, Math.min(2000, parseInt($wordsPer.value) || 60));
+      const includeStart = $includeStart.checked;
+
+      if(mode === 'paragraph'){
+        const paras = [];
+        for(let i=0;i<count;i++) paras.push(generateParagraph(wordsPer, includeStart && i===0));
+        $output.textContent = paras.join('\n\n');
+      } else {
+        $output.textContent = generateWords(count);
+      }
+    }
+
+    $generate.addEventListener('click', generate);
+
+    $copy.addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText($output.textContent);
+        $copy.textContent = 'Copied!';
+        setTimeout(()=> $copy.textContent = 'Copy',1200);
+      }catch(e){
+        alert('Copy failed — select the text manually and copy.');
+      }
+    });
+
+    $download.addEventListener('click', ()=>{
+      const blob = new Blob([$output.textContent], {type:'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'lorem.txt';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    // generate initial sample
+    generate();
+  </script>
+</body>
+</html>
