@@ -30,6 +30,11 @@ const apps = [
     html: "apps/exthang3r/index.html",
   },
   {
+    name: "Helios",
+    image: "apps/helios/logo.png",
+    html: "apps/helios/index.html",
+  },
+  {
     name: "EmulatorJS",
     image: "apps/emulatorjs/logo.png",
     html: "apps/emulatorjs/index.html",
