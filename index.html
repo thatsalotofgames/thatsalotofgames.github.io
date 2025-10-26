@@ -456,8 +456,6 @@
           />
           <h1>Jupiter</h1>
         </div>
-
-        <div class="footer"></div>
       </div>
 
       <!-- Games Screen -->
@@ -468,7 +466,7 @@
             alt="Jupiter"
             class="logo"
           />
-          <h1>Jupiter</h1>
+          <h1>Games</h1>
         </div>
 
         <div class="filter-tabs">
@@ -494,7 +492,7 @@
             alt="Jupiter"
             class="logo"
           />
-          <h1>Jupiter Apps</h1>
+          <h1>Apps</h1>
         </div>
 
         <div class="filter-tabs">
@@ -545,7 +543,6 @@
       const homeNavBtn = document.getElementById("homeNavBtn");
       const gamesNavBtn = document.getElementById("gamesNavBtn");
       const appsNavBtn = document.getElementById("appsNavBtn");
-      const homeCta = document.getElementById("homeCta");
       const gamesGrid = document.getElementById("gamesGrid");
       const appsGrid = document.getElementById("appsGrid");
       const searchInput = document.getElementById("searchInput");
@@ -680,6 +677,7 @@
       }
 
       function loadGame(game) {
+        lastScreen = "games";
         gameTitle.textContent = game.name;
         gameIframe.src = game.html;
         currentGameUrl = game.html;
@@ -692,7 +690,8 @@
       function closeGame() {
         gameIframe.src = "";
         gameContainer.classList.remove("active");
-        showGames();
+        if (lastScreen === "apps") showApps();
+        else showGames();
       }
 
       backBtn.addEventListener("click", closeGame);
@@ -803,6 +802,7 @@
       }
 
       function loadApp(app) {
+        lastScreen = "apps";
         gameTitle.textContent = app.name;
         gameIframe.src = app.html;
         currentGameUrl = app.html;

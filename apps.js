@@ -15,6 +15,11 @@ const apps = [
     html: "apps/blobwifi/index.html",
   },
   {
+    name: "Calculator",
+    image: "apps/calculator/logo.png",
+    html: "apps/calculator/index.html",
+  },
+  {
     name: "Data URL Generator",
     image: "apps/dataurlgenerator/logo.png",
     html: "apps/dataurlgenerator/index.html",
@@ -28,6 +33,11 @@ const apps = [
     name: "ExtHang3r",
     image: "apps/exthang3r/logo.png",
     html: "apps/exthang3r/index.html",
+  },
+  {
+    name: "Fictional Currency Converter",
+    image: "apps/fictionalcurrencyconverter/logo.png",
+    html: "apps/fictionalcurrencyconverter/index.html",
   },
   {
     name: "Helios",
@@ -45,6 +55,11 @@ const apps = [
     html: "apps/loremipsum/index.html",
   },
   {
+    name: "Piskel",
+    image: "apps/piskel/logo.png",
+    html: "apps/piskel/index.html",
+  },
+  {
     name: "Ruffle Player",
     image: "apps/flash/logo.png",
     html: "apps/flash/index.html",
@@ -60,8 +75,33 @@ const apps = [
     html: "apps/sh1mmer/index.html",
   },
   {
+    name: "Tier List",
+    image: "apps/bogsteir/logo.png",
+    html: "apps/bogsteir/index.html",
+  },
+  {
+    name: "Thirty Dollar Website",
+    image: "apps/thirtydollarwebsite/🗿.png",
+    html: "apps/thirtydollarwebsite/index.html",
+  },
+  {
+    name: "Turbowarp Packager",
+    image: "apps/turbowarppackager/logo.png",
+    html: "apps/turbowarppackager/index.html",
+  },
+  {
+    name: "Turbowarp Unpackager",
+    image: "apps/turbowarpunpackager/logo.png",
+    html: "apps/turbowarpunpackager/index.html",
+  },
+  {
     name: "Voxiles",
     image: "apps/voxiles/logo.png",
     html: "apps/voxiles/index.html",
+  },
+  {
+    name: "Zip Extractor",
+    image: "apps/zipextractor/logo.png",
+    html: "apps/zipextractor/index.html",
   },
 ];

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIP File Opener</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .upload-area:hover {
+            border-color: #007bff;
+        }
+
+        .upload-area.dragover {
+            border-color: #007bff;
+            background-color: #f8f9ff;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .file-list {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .file-item {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-name {
+            font-weight: 500;
+        }
+
+        .file-size {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .error {
+            color: #dc3545;
+            background: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .success {
+            color: #155724;
+            background: #d4edda;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 50px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .close {
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .file-content {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ZIP File Opener</h1>
+        
+        <div class="upload-area" id="uploadArea">
+            <p>Drop ZIP file here or click to select</p>
+            <input type="file" id="fileInput" accept=".zip">
+        </div>
+        
+        <div class="error" id="error"></div>
+        <div class="success" id="success"></div>
+        
+        <div class="file-list" id="fileList">
+            <h3>Files:</h3>
+            <div id="fileItems"></div>
+            <button id="downloadAll">Download All</button>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">File</h3>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <div class="file-content" id="fileContent"></div>
+        </div>
+    </div>
+
+    <script>
+        let extractedFiles = {};
+
+        // Elements
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        const fileItems = document.getElementById('fileItems');
+        const modal = document.getElementById('modal');
+        const error = document.getElementById('error');
+        const success = document.getElementById('success');
+
+        // Event listeners
+        uploadArea.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', handleFile);
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            if (e.dataTransfer.files.length > 0) {
+                processZip(e.dataTransfer.files[0]);
+            }
+        });
+
+        document.getElementById('closeModal').addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        document.getElementById('downloadAll').addEventListener('click', downloadAll);
+
+        function handleFile(e) {
+            if (e.target.files.length > 0) {
+                processZip(e.target.files[0]);
+            }
+        }
+
+        async function processZip(file) {
+            if (!file.name.toLowerCase().endsWith('.zip')) {
+                showError('Please select a ZIP file');
+                return;
+            }
+
+            hideMessages();
+            extractedFiles = {};
+
+            try {
+                const zip = new JSZip();
+                const content = await zip.loadAsync(file);
+                
+                for (const [path, zipEntry] of Object.entries(content.files)) {
+                    if (!zipEntry.dir) {
+                        const blob = await zipEntry.async('blob');
+                        extractedFiles[path] = {
+                            name: path.split('/').pop(),
+                            path: path,
+                            content: blob,
+                            size: formatSize(blob.size)
+                        };
+                    }
+                }
+
+                displayFiles();
+                showSuccess(`Extracted ${Object.keys(extractedFiles).length} files`);
+                
+            } catch (err) {
+                showError('Error reading ZIP file');
+            }
+        }
+
+        function displayFiles() {
+            fileItems.innerHTML = '';
+            
+            Object.values(extractedFiles).forEach(file => {
+                const item = document.createElement('div');
+                item.className = 'file-item';
+                item.innerHTML = `
+                    <div>
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-size">${file.size}</div>
+                    </div>
+                    <div class="file-actions">
+                        <button onclick="viewFile('${file.path}')">View</button>
+                        <button onclick="downloadFile('${file.path}')">Download</button>
+                    </div>
+                `;
+                fileItems.appendChild(item);
+            });
+            
+            fileList.style.display = 'block';
+        }
+
+        async function viewFile(path) {
+            const file = extractedFiles[path];
+            const modalTitle = document.getElementById('modalTitle');
+            const fileContent = document.getElementById('fileContent');
+            
+            modalTitle.textContent = file.name;
+            
+            if (isTextFile(file.name)) {
+                try {
+                    const text = await file.content.text();
+                    fileContent.textContent = text;
+                } catch (err) {
+                    fileContent.textContent = 'Cannot display file content';
+                }
+            } else if (isImageFile(file.name)) {
+                const url = URL.createObjectURL(file.content);
+                fileContent.innerHTML = `<img src="${url}" style="max-width: 100%;">`;
+            } else {
+                fileContent.textContent = 'Cannot preview this file type';
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function downloadFile(path) {
+            const file = extractedFiles[path];
+            const url = URL.createObjectURL(file.content);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = file.name;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        async function downloadAll() {
+            const zip = new JSZip();
+            Object.entries(extractedFiles).forEach(([path, file]) => {
+                zip.file(path, file.content);
+            });
+            
+            const content = await zip.generateAsync({type: 'blob'});
+            const url = URL.createObjectURL(content);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'files.zip';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function isTextFile(name) {
+            const ext = name.split('.').pop().toLowerCase();
+            return ['txt', 'md', 'json', 'html', 'css', 'js', 'py', 'xml'].includes(ext);
+        }
+
+        function isImageFile(name) {
+            const ext = name.split('.').pop().toLowerCase();
+            return ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'].includes(ext);
+        }
+
+        function formatSize(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i)) + ' ' + sizes[i];
+        }
+
+        function showError(message) {
+            error.textContent = message;
+            error.style.display = 'block';
+        }
+
+        function showSuccess(message) {
+            success.textContent = message;
+            success.style.display = 'block';
+        }
+
+        function hideMessages() {
+            error.style.display = 'none';
+            success.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
