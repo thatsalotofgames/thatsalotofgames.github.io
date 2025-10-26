@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flash games</title>
+    <style>
+      body {
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>FLASH GAMES</h1>
+    <h2>courtesy to @pokemonhacker1337 on discord</h2>
+    <div id="buttonContainer"></div>
+
+    <script>
+      const fileList = [
+        "10bullets",
+        "10morebullets",
+        "13daysafter",
+        "ageofwar",
+        "bloxorz",
+        "cubefield",
+        "dealornodeal",
+        "fireboyandwatergirl",
+        "learntofly",
+        "papersplease",
+        "supermeatboy",
+        "theimpossiblequiz",
+        "towerofheaven",
+        "tosstheturtle",
+        "worldshardestgame",
+        "worldshardestgame2",
+        "worldshardestgame3",
+        "worldshardestgame4",
+      ];
+
+      const folderPath = "swfs";
+      const fileExtension = ".swf";
+
+      const container = document.getElementById("buttonContainer");
+
+      fileList.forEach(function (fileName) {
+        const button = document.createElement("button");
+        button.textContent = fileName;
+
+        const link = document.createElement("a");
+        link.href = folderPath + "/" + fileName + fileExtension;
+        link.download = fileName + fileExtension;
+
+        link.appendChild(button);
+        container.appendChild(link);
+        container.appendChild(document.createElement("br"));
+      });
+    </script>
+  </body>
+</html>
