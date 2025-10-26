@@ -683,7 +683,6 @@
         gameTitle.textContent = game.name;
         gameIframe.src = game.html;
         currentGameUrl = game.html;
-        lastScreen = "games";
         homeScreen.classList.add("hidden");
         gamesScreen.classList.remove("active");
         appsScreen.classList.remove("active");
@@ -693,11 +692,7 @@
       function closeGame() {
         gameIframe.src = "";
         gameContainer.classList.remove("active");
-        if (lastScreen === "apps") {
-          showApps();
-        } else {
-          showGames();
-        }
+        showGames();
       }
 
       backBtn.addEventListener("click", closeGame);
@@ -811,7 +806,6 @@
         gameTitle.textContent = app.name;
         gameIframe.src = app.html;
         currentGameUrl = app.html;
-        lastScreen = "apps";
         homeScreen.classList.add("hidden");
         gamesScreen.classList.remove("active");
         appsScreen.classList.remove("active");
