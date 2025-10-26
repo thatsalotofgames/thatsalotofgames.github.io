@@ -4,11 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>flash games</title>
-    <style>
-      body {
-        background-color: white;
-      }
-    </style>
   </head>
   <body>
     <h1>FLASH GAMES</h1>
@@ -17,50 +12,54 @@
 
     <script>
       const fileList = [
-        "10bullets",
-        "10morebullets",
-        "13daysafter",
+        "1 on 1 soccer",
+        "10 bullets",
+        "10 more bullets",
+        "13 days after",
         "40xescape",
-        "60secondsburgerrun",
-        "acegangstertaxi",
-        "achievementunlocked",
-        "ageofwar",
-        "ageofwar2",
+        "60 seconds burger run",
+        "ace gangster taxi",
+        "achievement unlocked",
+        "achievement unlocked 2",
+        "achievement unlocked 3",
+        "age of war",
+        "age of war 2",
         "amberia",
-        "armyofages",
-        "bashthecomputer",
-        "bigredbutton",
+        "army of ages",
+        "bash the computer",
+        "big red button",
         "blosics",
-        "blosics2",
-        "blosics3",
+        "blosics 2",
+        "blosics 3",
         "bloxorz",
         "cubefield",
-        "dealornodeal",
-        "desktoptowerdefence",
-        "doodlegod",
-        "doodledevil",
-        "earntodie",
-        "earntodie2",
-        "fireboyandwatergirl",
-        "fireboyandwatergirl2",
-        "fireboyandwatergirl3",
-        "fireboyandwatergirl4",
-        "kingofbuttons",
-        "learntofly",
-        "orangeroulette",
-        "papersplease",
-        "portaltheflashversion",
-        "supermeatboy",
-        "theimpossiblequiz",
-        "thisistheonlylevel",
-        "thisistheonlylevel2",
-        "thisistheonlylevel3",
-        "towerofheaven",
-        "tosstheturtle",
-        "worldshardestgame",
-        "worldshardestgame2",
-        "worldshardestgame3",
-        "worldshardestgame4",
+        "curveball",
+        "deal or no deal",
+        "desktop tower defence",
+        "doodle god",
+        "doodle devil",
+        "earn to die",
+        "earn to die 2",
+        "fireboy and watergirl",
+        "fireboy and watergirl 2",
+        "fireboy and watergirl 3",
+        "fireboy and watergirl 4",
+        "king of buttons",
+        "learn to fly",
+        "orange roulette",
+        "papers please",
+        "portal the flash version",
+        "super meat boy",
+        "the impossible quiz",
+        "this is the only level",
+        "this is the only level 2",
+        "this is the only level 3",
+        "tower of heaven",
+        "toss the turtle",
+        "world shardest game",
+        "world shardest game 2",
+        "world shardest game 3",
+        "world shardest game 4",
       ];
 
       const folderPath = "swfs";
@@ -69,12 +68,14 @@
       const container = document.getElementById("buttonContainer");
 
       fileList.forEach(function (fileName) {
+        const cleanedName = fileName.replace(/\s+/g, ""); // remove all spaces
+
         const button = document.createElement("button");
-        button.textContent = fileName;
+        button.textContent = fileName; // keep original name visible
 
         const link = document.createElement("a");
-        link.href = folderPath + "/" + fileName + fileExtension;
-        link.download = fileName + fileExtension;
+        link.href = folderPath + "/" + cleanedName + fileExtension;
+        link.download = cleanedName + fileExtension;
 
         link.appendChild(button);
         container.appendChild(link);
