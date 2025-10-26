@@ -40,19 +40,9 @@ const apps = [
     html: "apps/emulatorjs/index.html",
   },
   {
-    name: "LightSPED Killer Agent",
-    image: "apps/lightspedkilleragent/logo.png",
-    html: "apps/lightspedkilleragent/index.html",
-  },
-  {
     name: "Lorem Ipsum Generator",
     image: "apps/loremipsum/logo.png",
     html: "apps/loremipsum/index.html",
-  },
-  {
-    name: "Play!.JS",
-    image: "apps/playjs/logo.png",
-    html: "apps/playjs/index.html",
   },
   {
     name: "Ruffle Player",
