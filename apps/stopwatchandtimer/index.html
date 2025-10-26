@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Stopwatch & Timer</title>
+    <style>
+      :root {
+        --bg: #0f1724; /* deep navy */
+        --card: #0b1220;
+        --muted: #9aa6b2;
+        --accent: #60a5fa;
+        --accent-2: #34d399;
+        --glass: rgba(255, 255, 255, 0.03);
+        --radius: 14px;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+          Roboto, "Helvetica Neue", Arial;
+        color-scheme: dark;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: linear-gradient(180deg, var(--bg) 0%, #071026 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 36px;
+        color: #e6eef6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .app {
+        width: 920px;
+        max-width: 96vw;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        border-radius: 18px;
+        padding: 22px;
+        box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 20px;
+        align-items: start;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 20px;
+      }
+      p.lead {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .panel {
+        background: var(--card);
+        padding: 18px;
+        border-radius: 12px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+      }
+
+      .main-area {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .display {
+        text-align: center;
+        padding: 18px;
+        border-radius: 12px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.01),
+          rgba(255, 255, 255, 0.015)
+        );
+      }
+      .time {
+        font-variant-numeric: tabular-nums;
+        font-size: 46px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      .subtext {
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 6px;
+      }
+
+      .controls {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 8px;
+      }
+      button {
+        background: var(--glass);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        color: inherit;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      button.primary {
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        color: #042027;
+        border: none;
+        font-weight: 700;
+      }
+      button.ghost {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .right-col {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .tabs {
+        display: flex;
+        gap: 8px;
+      }
+      .tab {
+        padding: 8px 12px;
+        border-radius: 10px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.02);
+        cursor: pointer;
+      }
+      .tab.active {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .timer-setup {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .inputs {
+        display: flex;
+        gap: 8px;
+      }
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        background: transparent;
+        color: inherit;
+      }
+
+      .progress {
+        height: 12px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        border-radius: 12px;
+      }
+
+      .laps {
+        max-height: 200px;
+        overflow: auto;
+        padding-right: 6px;
+      }
+      .lap-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.02);
+        font-size: 13px;
+      }
+
+      footer.small {
+        font-size: 12px;
+        color: var(--muted);
+        text-align: center;
+        padding-top: 8px;
+      }
+
+      @media (max-width: 880px) {
+        .app {
+          grid-template-columns: 1fr;
+        }
+        .right-col {
+          order: 2;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <div>
+        <div class="header">
+          <div class="logo">ST</div>
+          <div>
+            <h1>Stopwatch & Timer</h1>
+            <p class="lead">
+              Simple, responsive, accessible — start timing in one click.
+            </p>
+          </div>
+        </div>
+
+        <div class="main-area" style="margin-top: 14px">
+          <div class="panel display" id="stopwatchPanel">
+            <div class="time" id="swDisplay">00:00:00.00</div>
+            <div class="subtext" id="swSub">Elapsed</div>
+
+            <div class="controls" style="margin-top: 12px">
+              <button id="swStart" class="primary">Start</button>
+              <button id="swLap" class="ghost" disabled>Lap</button>
+              <button id="swPause" disabled>Pause</button>
+              <button id="swReset" disabled>Reset</button>
+            </div>
+
+            <div style="margin-top: 12px">
+              <label style="font-size: 13px; color: var(--muted)">Laps</label>
+              <div
+                class="laps panel"
+                id="lapsContainer"
+                style="
+                  margin-top: 8px;
+                  padding: 8px;
+                  max-height: 150px;
+                  overflow: auto;
+                "
+              ></div>
+            </div>
+          </div>
+
+          <div class="panel" style="text-align: center">
+            <p style="margin: 0; font-size: 13px; color: var(--muted)">
+              Keyboard shortcuts: <strong>Space</strong> start/pause •
+              <strong>L</strong> lap • <strong>R</strong> reset
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top: 12px">
+          <div class="panel small">
+            <footer class="small">
+              This is a standalone HTML file — works offline. Uses WebAudio for
+              the end alarm.
+            </footer>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-col">
+        <div class="panel">
+          <div class="tabs" role="tablist" aria-label="Timer tabs">
+            <button class="tab active" id="presetTab">Preset</button>
+            <button class="tab" id="customTab">Custom</button>
+          </div>
+
+          <div style="margin-top: 12px" id="presetPane">
+            <div class="timer-setup">
+              <label>Quick timers</label>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap">
+                <button class="tab" data-minutes="1">1 min</button>
+                <button class="tab" data-minutes="5">5 min</button>
+                <button class="tab" data-minutes="10">10 min</button>
+                <button class="tab" data-minutes="15">15 min</button>
+                <button class="tab" data-minutes="30">30 min</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: none; margin-top: 12px" id="customPane">
+            <div class="timer-setup">
+              <label for="minutes">Minutes</label>
+              <div class="inputs">
+                <input id="minutes" type="number" min="0" step="1" value="0" />
+                <input
+                  id="seconds"
+                  type="number"
+                  min="0"
+                  max="59"
+                  step="1"
+                  value="30"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px">
+            <div class="display" id="timerDisplay">
+              <div class="time" id="tmDisplay">00:00:00</div>
+              <div class="subtext" id="tmSub">Not running</div>
+
+              <div class="controls" style="margin-top: 12px">
+                <button id="tmStart" class="primary">Start</button>
+                <button id="tmPause" disabled>Pause</button>
+                <button id="tmReset" disabled>Reset</button>
+              </div>
+
+              <div style="margin-top: 12px">
+                <div class="progress" aria-hidden="true">
+                  <div class="bar" id="progressBar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="text-align: center">
+          <label style="font-size: 13px; color: var(--muted)"
+            >End sound volume</label
+          >
+          <div style="margin-top: 8px">
+            <input
+              id="vol"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.6"
+              style="width: 100%"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // --- Stopwatch ---
+      const swDisplay = document.getElementById("swDisplay");
+      const swStartBtn = document.getElementById("swStart");
+      const swLapBtn = document.getElementById("swLap");
+      const swPauseBtn = document.getElementById("swPause");
+      const swResetBtn = document.getElementById("swReset");
+      const lapsContainer = document.getElementById("lapsContainer");
+      const swSub = document.getElementById("swSub");
+
+      let swRunning = false;
+      let swStartTime = 0; // epoch milliseconds when started
+      let swElapsed = 0; // milliseconds
+      let swTimerId = null;
+      let lapCount = 0;
+
+      function formatTime(ms, showHundredths = true) {
+        const totalHundredths = Math.floor(ms / 10);
+        const hundredths = totalHundredths % 100;
+        let seconds = Math.floor(ms / 1000);
+        const sec = seconds % 60;
+        const mins = Math.floor(seconds / 60) % 60;
+        const hours = Math.floor(seconds / 3600);
+        if (showHundredths)
+          return (
+            String(hours).padStart(2, "0") +
+            ":" +
+            String(mins).padStart(2, "0") +
+            ":" +
+            String(sec).padStart(2, "0") +
+            "." +
+            String(hundredths).padStart(2, "0")
+          );
+        return (
+          String(hours).padStart(2, "0") +
+          ":" +
+          String(mins).padStart(2, "0") +
+          ":" +
+          String(sec).padStart(2, "0")
+        );
+      }
+
+      function updateSWDisplay() {
+        const now = performance.now();
+        const elapsed = swElapsed + (swRunning ? now - swStartTime : 0);
+        swDisplay.textContent = formatTime(elapsed, true);
+      }
+
+      function swStart() {
+        if (!swRunning) {
+          swRunning = true;
+          swStartTime = performance.now();
+          swStartBtn.textContent = "Running";
+          swStartBtn.disabled = true;
+          swPauseBtn.disabled = false;
+          swLapBtn.disabled = false;
+          swResetBtn.disabled = false;
+          swSub.textContent = "Running";
+          swTimerId = setInterval(updateSWDisplay, 50);
+        }
+      }
+
+      function swPause() {
+        if (swRunning) {
+          swRunning = false;
+          swElapsed += performance.now() - swStartTime;
+          clearInterval(swTimerId);
+          swStartBtn.textContent = "Start";
+          swStartBtn.disabled = false;
+          swPauseBtn.disabled = true;
+          swSub.textContent = "Paused";
+          updateSWDisplay();
+        }
+      }
+
+      function swReset() {
+        swRunning = false;
+        swStartTime = 0;
+        swElapsed = 0;
+        clearInterval(swTimerId);
+        swDisplay.textContent = "00:00:00.00";
+        lapCount = 0;
+        lapsContainer.innerHTML = "";
+        swStartBtn.textContent = "Start";
+        swStartBtn.disabled = false;
+        swLapBtn.disabled = true;
+        swPauseBtn.disabled = true;
+        swResetBtn.disabled = true;
+        swSub.textContent = "Elapsed";
+      }
+
+      function swLap() {
+        const elapsed =
+          swElapsed + (swRunning ? performance.now() - swStartTime : 0);
+        lapCount += 1;
+        const node = document.createElement("div");
+        node.className = "lap-item";
+        node.innerHTML = `<div>Lap ${lapCount}</div><div>${formatTime(
+          elapsed,
+          true
+        )}</div>`;
+        lapsContainer.prepend(node);
+      }
+
+      swStartBtn.addEventListener("click", swStart);
+      swPauseBtn.addEventListener("click", swPause);
+      swResetBtn.addEventListener("click", swReset);
+      swLapBtn.addEventListener("click", swLap);
+
+      // Keyboard shortcuts
+      window.addEventListener("keydown", (e) => {
+        if (e.code === "Space") {
+          e.preventDefault();
+          if (swRunning) swPause();
+          else swStart();
+        }
+        if (e.key.toLowerCase() === "l") {
+          if (!swLapBtn.disabled) swLap();
+        }
+        if (e.key.toLowerCase() === "r") {
+          if (!swResetBtn.disabled) swReset();
+        }
+      });
+
+      // initialize
+      swReset();
+
+      // --- Timer ---
+      const tmDisplay = document.getElementById("tmDisplay");
+      const tmSub = document.getElementById("tmSub");
+      const tmStartBtn = document.getElementById("tmStart");
+      const tmPauseBtn = document.getElementById("tmPause");
+      const tmResetBtn = document.getElementById("tmReset");
+      const progressBar = document.getElementById("progressBar");
+      const minutesInput = document.getElementById("minutes");
+      const secondsInput = document.getElementById("seconds");
+      const presetTab = document.getElementById("presetTab");
+      const customTab = document.getElementById("customTab");
+      const presetPane = document.getElementById("presetPane");
+      const customPane = document.getElementById("customPane");
+      const volSlider = document.getElementById("vol");
+
+      let tmTotal = 0; // milliseconds
+      let tmRemaining = 0;
+      let tmRunning = false;
+      let tmTimerId = null;
+      let tmEndTime = 0; // performance.now target
+
+      function formatTimer(ms) {
+        if (ms < 0) ms = 0;
+        const seconds = Math.floor(ms / 1000);
+        const sec = seconds % 60;
+        const mins = Math.floor(seconds / 60) % 60;
+        const hours = Math.floor(seconds / 3600);
+        return (
+          String(hours).padStart(2, "0") +
+          ":" +
+          String(mins).padStart(2, "0") +
+          ":" +
+          String(sec).padStart(2, "0")
+        );
+      }
+
+      function tmUpdate() {
+        const now = performance.now();
+        tmRemaining = Math.max(0, tmEndTime - now);
+        tmDisplay.textContent = formatTimer(tmRemaining);
+        const pct = tmTotal > 0 ? ((tmTotal - tmRemaining) / tmTotal) * 100 : 0;
+        progressBar.style.width = pct + "%";
+        if (tmRemaining <= 0) {
+          tmStop(true);
+        }
+      }
+
+      function tmStart(durationMs) {
+        if (durationMs !== undefined) {
+          tmTotal = durationMs;
+          tmRemaining = durationMs;
+        }
+        if (tmTotal <= 0) return;
+        tmRunning = true;
+        tmEndTime = performance.now() + tmRemaining;
+        tmStartBtn.disabled = true;
+        tmPauseBtn.disabled = false;
+        tmResetBtn.disabled = false;
+        tmSub.textContent = "Running";
+        tmTimerId = setInterval(tmUpdate, 100);
+        tmUpdate();
+      }
+
+      function tmPause() {
+        if (tmRunning) {
+          tmRunning = false;
+          clearInterval(tmTimerId);
+          tmRemaining = Math.max(0, tmEndTime - performance.now());
+          tmStartBtn.disabled = false;
+          tmPauseBtn.disabled = true;
+          tmSub.textContent = "Paused";
+          tmUpdate();
+        }
+      }
+
+      function tmStop(finished = false) {
+        tmRunning = false;
+        clearInterval(tmTimerId);
+        tmRemaining = 0;
+        progressBar.style.width = "100%";
+        tmDisplay.textContent = formatTimer(0);
+        tmStartBtn.disabled = false;
+        tmPauseBtn.disabled = true;
+        tmResetBtn.disabled = false;
+        tmSub.textContent = finished ? "Completed" : "Stopped";
+        if (finished) playBeep();
+      }
+
+      function tmReset() {
+        tmRunning = false;
+        clearInterval(tmTimerId);
+        tmTotal = 0;
+        tmRemaining = 0;
+        progressBar.style.width = "0%";
+        tmDisplay.textContent = "00:00:00";
+        tmStartBtn.disabled = false;
+        tmPauseBtn.disabled = true;
+        tmResetBtn.disabled = true;
+        tmSub.textContent = "Not running";
+      }
+
+      tmStartBtn.addEventListener("click", () => {
+        // get duration from either preset or custom
+        if (
+          !presetPane.hidden &&
+          event &&
+          event.target &&
+          event.target.closest
+        ) {
+        }
+        const mins = parseInt(minutesInput.value || "0", 10);
+        const secs = parseInt(secondsInput.value || "0", 10);
+        const duration = (mins * 60 + secs) * 1000;
+        if (duration > 0) {
+          tmReset();
+          tmTotal = duration;
+          tmRemaining = duration;
+          tmStart(duration);
+        }
+      });
+
+      tmPauseBtn.addEventListener("click", tmPause);
+      tmResetBtn.addEventListener("click", tmReset);
+
+      // Preset handling (delegate)
+      presetPane.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-minutes]");
+        if (!btn) return;
+        const mins = parseInt(btn.getAttribute("data-minutes"), 10);
+        minutesInput.value = mins;
+        secondsInput.value = 0;
+        // auto-start when preset selected
+        tmReset();
+        tmTotal = mins * 60 * 1000;
+        tmRemaining = tmTotal;
+        tmStart();
+      });
+
+      // Tabs switch
+      presetTab.addEventListener("click", () => {
+        presetTab.classList.add("active");
+        customTab.classList.remove("active");
+        presetPane.style.display = "";
+        customPane.style.display = "none";
+      });
+      customTab.addEventListener("click", () => {
+        customTab.classList.add("active");
+        presetTab.classList.remove("active");
+        presetPane.style.display = "none";
+        customPane.style.display = "";
+      });
+
+      // volume controlled by slider (used in playBeep)
+      function playBeep() {
+        try {
+          const ctx = new (window.AudioContext || window.webkitAudioContext)();
+          const o = ctx.createOscillator();
+          const g = ctx.createGain();
+          o.type = "sine";
+          o.frequency.value = 880;
+          g.gain.value = parseFloat(volSlider.value) || 0.6;
+          o.connect(g);
+          g.connect(ctx.destination);
+          o.start();
+          // three quick beeps
+          setTimeout(() => {
+            o.frequency.value = 660;
+          }, 180);
+          setTimeout(() => {
+            o.frequency.value = 440;
+          }, 360);
+          setTimeout(() => {
+            o.stop();
+            ctx.close();
+          }, 700);
+        } catch (e) {
+          // ignore if AudioContext blocked
+        }
+      }
+
+      // initialize timer UI
+      tmReset();
+
+      // simple accessibility focus states
+      document.querySelectorAll("button,input").forEach((el) => {
+        el.addEventListener(
+          "focus",
+          () => (el.style.outline = "2px solid rgba(96,165,250,0.18)")
+        );
+        el.addEventListener("blur", () => (el.style.outline = "none"));
+      });
+    </script>
+  </body>
+</html>

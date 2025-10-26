@@ -55,6 +55,11 @@ const apps = [
     html: "apps/loremipsum/index.html",
   },
   {
+    name: "PenguinMod",
+    image: "apps/penguinmod/logo.png",
+    html: "apps/penguinmod/editor.html",
+  },
+  {
     name: "Piskel",
     image: "apps/piskel/logo.png",
     html: "apps/piskel/index.html",
