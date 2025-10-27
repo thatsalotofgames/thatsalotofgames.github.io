@@ -395,6 +395,11 @@ const games = [
     html: "games/serenitrove/index.html",
   },
   {
+    name: "Shogun Showdown",
+    image: "games/shogun showdown/logo.png",
+    html: "games/shogun showdown/index.html",
+  },
+  {
     name: "Slope",
     image: "games/slope/logo.png",
     html: "games/slope/index.html",
