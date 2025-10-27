@@ -3,17 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>flash games</title>
+    <title>Flash Games</title>
+
+    <!-- Ruffle player -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+
     <style>
       body {
+        font-family: Arial, sans-serif;
         background-color: white;
+        text-align: center;
+        margin: 20px;
+      }
+
+      h1,
+      h2 {
+        color: #333;
+      }
+
+      #buttonContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      #gameContainer {
+        margin-top: 30px;
+      }
+
+      #downloadLink {
+        display: inline-block;
+        margin-top: 15px;
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
       }
     </style>
   </head>
   <body>
     <h1>FLASH GAMES</h1>
     <h2>courtesy to @pokemonhacker1337 on discord</h2>
+
     <div id="buttonContainer"></div>
+    <div id="gameContainer"></div>
+    <a id="downloadLink" href="#" download>Download .swf</a>
 
     <script>
       const fileList = [
@@ -98,20 +147,33 @@
       const fileExtension = ".swf";
 
       const container = document.getElementById("buttonContainer");
+      const gameContainer = document.getElementById("gameContainer");
+      const downloadLink = document.getElementById("downloadLink");
 
       fileList.forEach(function (fileName) {
-        const cleanedName = fileName.replace(/\s+/g, ""); // remove all spaces
+        const cleanedName = fileName.replace(/\s+/g, "_");
+        const filePath = `${folderPath}/${cleanedName}${fileExtension}`;
 
         const button = document.createElement("button");
-        button.textContent = fileName; // keep original name visible
+        button.textContent = fileName;
 
-        const link = document.createElement("a");
-        link.href = folderPath + "/" + cleanedName + fileExtension;
-        link.download = cleanedName + fileExtension;
+        button.addEventListener("click", function () {
+          // Clear previous game
+          gameContainer.innerHTML = "";
 
-        link.appendChild(button);
-        container.appendChild(link);
-        container.appendChild(document.createElement("br"));
+          // Create Ruffle player
+          const ruffle = window.RufflePlayer.newest();
+          const player = ruffle.createPlayer();
+          gameContainer.appendChild(player);
+          player.load(filePath);
+
+          // Update download link
+          downloadLink.href = filePath;
+          downloadLink.download = cleanedName + fileExtension;
+          downloadLink.textContent = `Download "${fileName}" (.swf)`;
+        });
+
+        container.appendChild(button);
       });
     </script>
   </body>
