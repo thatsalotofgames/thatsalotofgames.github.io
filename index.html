@@ -677,15 +677,31 @@
         });
       }
 
-      function loadGame(game) {
+      async function loadGame(game) {
         lastScreen = "games";
         gameTitle.textContent = game.name;
-        gameIframe.src = game.html;
         currentGameUrl = game.html;
         homeScreen.classList.add("hidden");
         gamesScreen.classList.remove("active");
         appsScreen.classList.remove("active");
         gameContainer.classList.add("active");
+
+        try {
+          const response = await fetch(game.html);
+          let html = await response.text();
+
+          const gameUrl = new URL(game.html, window.location.href).href;
+          const baseUrl = gameUrl.substring(0, gameUrl.lastIndexOf("/") + 1);
+
+          html = html.replace(/<head>/i, `<head><base href="${baseUrl}">`);
+
+          const blob = new Blob([html], { type: "text/html" });
+          const blobUrl = URL.createObjectURL(blob);
+          gameIframe.src = blobUrl;
+        } catch (error) {
+          console.error("Error loading game:", error);
+          gameIframe.src = game.html;
+        }
       }
 
       function closeGame() {
