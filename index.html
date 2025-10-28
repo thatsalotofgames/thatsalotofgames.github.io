@@ -690,10 +690,13 @@
           const response = await fetch(game.html);
           let html = await response.text();
 
-          const baseHref =
-            "https://raw.githack.com/thatsalotofgames/thatsalotofgames.github.io/main/";
+          const gamePath = game.html.replace(/^\//, "");
+          const baseUrl = `https://raw.githack.com/thatsalotofgames/thatsalotofgames.github.io/main/${gamePath.substring(
+            0,
+            gamePath.lastIndexOf("/") + 1
+          )}`;
 
-          html = html.replace(/<head>/i, `<head><base href="${baseHref}">`);
+          html = html.replace(/<head>/i, `<head><base href="${baseUrl}">`);
 
           const blob = new Blob([html], { type: "text/html" });
           const blobUrl = URL.createObjectURL(blob);
