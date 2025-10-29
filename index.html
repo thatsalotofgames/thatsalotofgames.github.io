@@ -731,8 +731,13 @@
           const response = await fetch(currentGameUrl);
           let html = await response.text();
 
-          const gameUrl = new URL(currentGameUrl, window.location.href).href;
-          html = html.replace(/<head>/i, `<head><base href="${gameUrl}">`);
+          const gamePath = currentGameUrl.replace(/^\//, "");
+          const baseUrl = `https://raw.githack.com/thatsalotofgames/thatsalotofgames.github.io/main/${gamePath.substring(
+            0,
+            gamePath.lastIndexOf("/") + 1
+          )}`;
+
+          html = html.replace(/<head>/i, `<head><base href="${baseUrl}">`);
 
           const win = window.open("about:blank");
           win.document.write(html);
