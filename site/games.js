@@ -90,6 +90,11 @@ const games = [
     html: "games/break the tower/index.html",
   },
   {
+    name: "Candy Box 2",
+    image: "games/candy box 2/logo.png",
+    html: "games/candy box 2/index.html",
+  },
+  {
     name: "Celeste 2",
     image: "games/celeste 2/logo.png",
     html: "games/celeste 2/index.html",
