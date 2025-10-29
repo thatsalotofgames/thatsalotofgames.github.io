@@ -395,14 +395,14 @@ const games = [
     html: "games/sandboxels/index.html",
   },
   {
+    name: "Sandtris",
+    image: "games/sandtris/logo.png",
+    html: "games/sandtris/index.html",
+  },
+  {
     name: "Serenitrove",
     image: "games/serenitrove/logo.png",
     html: "games/serenitrove/index.html",
-  },
-  {
-    name: "Shogun Showdown",
-    image: "games/shogun showdown/logo.png",
-    html: "games/shogun showdown/index.html",
   },
   {
     name: "Slope",
