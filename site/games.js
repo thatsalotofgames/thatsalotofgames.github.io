@@ -275,6 +275,11 @@ const games = [
     html: "games/just one boss/index.html",
   },
   {
+    name: "Kitchen Gun Game",
+    image: "games/kitchen gun game/logo.png",
+    html: "games/kitchen gun game/index.html",
+  },
+  {
     name: "Learn To Fly",
     image: "games/flash games/images/learntofly.png",
     html: "games/flash games/learntofly.html",
@@ -440,6 +445,16 @@ const games = [
     html: "games/stickman hook/index.html",
   },
   {
+    name: "Superhot",
+    image: "games/superhot/hot.jpg",
+    html: "games/superhot/index.html",
+  },
+  {
+    name: "Superhotline Miami",
+    image: "games/superhotline miami/logo.png",
+    html: "games/superhotline miami/index.html",
+  },
+  {
     name: "Super Meat Boy",
     image: "games/flash games/images/supermeatboy.png",
     html: "games/flash games/supermeatboy.html",
@@ -493,6 +508,11 @@ const games = [
     name: "Uncanny Cat Golf",
     image: "games/uncanny cat golf/logo.png",
     html: "games/uncanny cat golf/index.html",
+  },
+  {
+    name: "Unfair Undyne",
+    image: "games/unfair undyne/logo.png",
+    html: "games/unfair undyne/index.html",
   },
   {
     name: "Untitled Zombie Shooter",
