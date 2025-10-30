@@ -185,6 +185,11 @@ const games = [
     html: "games/death run 3d/index.html",
   },
   {
+    name: "Die In A Dungeon",
+    image: "games/die in a dungeon/logo.png",
+    html: "games/die in a dungeon/index.html",
+  },
+  {
     name: "Dire Decks",
     image: "games/dire decks/logo.png",
     html: "games/dire decks/index.html",
