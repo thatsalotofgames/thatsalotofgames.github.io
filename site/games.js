@@ -20,6 +20,11 @@ const games = [
     html: "games/2048/index.html",
   },
   {
+    name: "40xEscape",
+    image: "games/flash games/images/40xescape.png",
+    html: "games/flash games/40xescape.html",
+  },
+  {
     name: "Age Of War",
     image: "games/flash games/images/ageofwar.png",
     html: "games/flash games/ageofwar.html",
@@ -38,6 +43,11 @@ const games = [
     name: "Balls, Dice & Stickers",
     image: "games/balls dice and stickers/logo.png",
     html: "games/balls dice and stickers/index.html",
+  },
+  {
+    name: "Bash The Computer",
+    image: "games/flash games/images/bashthecomputer.png",
+    html: "games/flash games/bashthecomputer.html",
   },
   {
     name: "Basketball Randoms",
@@ -448,6 +458,16 @@ const games = [
     name: "Sugar, Sugar",
     image: "games/flash games/images/sugarsugar.png",
     html: "games/flash games/sugarsugar.html",
+  },
+  {
+    name: "Sugar, Sugar 2",
+    image: "games/flash games/images/sugarsugar2.png",
+    html: "games/flash games/sugarsugar2.html",
+  },
+  {
+    name: "Sugar, Sugar 3",
+    image: "games/flash games/images/sugarsugar3.png",
+    html: "games/flash games/sugarsugar3.html",
   },
   {
     name: "Superhot",
