@@ -210,6 +210,11 @@ const games = [
     html: "games/dodge and slash/index.html",
   },
   {
+    name: "Drift Hunters",
+    image: "games/drift hunters/logo.png",
+    html: "games/drift hunters/index.html",
+  },
+  {
     name: "driftr",
     image: "games/driftr/logo.png",
     html: "games/driftr/index.html",
@@ -353,6 +358,11 @@ const games = [
     name: "Level Devil",
     image: "games/level devil/logo.png",
     html: "games/level devil/index.html",
+  },
+  {
+    name: "Lost In Translation",
+    image: "games/lost in translation/logo.png",
+    html: "games/lost in translation/index.html",
   },
   {
     name: "Moto X3M",
