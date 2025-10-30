@@ -145,9 +145,14 @@ const games = [
     html: "games/celeste classic/index.html",
   },
   {
-    name: "Chessformer",
-    image: "games/chessformer/logo.png",
-    html: "games/chessformer/index.html",
+    name: "Chrono Crisis",
+    image: "games/chrono crisis/logo.png",
+    html: "games/chrono crisis/index.html",
+  },
+  {
+    name: "Snow Rider 3D",
+    image: "games/snow rider 3d/logo.png",
+    html: "games/snow rider 3d/index.html",
   },
   {
     name: "Combo Pool",
@@ -353,11 +358,6 @@ const games = [
     name: "Level Devil",
     image: "games/level devil/logo.png",
     html: "games/level devil/index.html",
-  },
-  {
-    name: "Lost In Translation",
-    image: "games/lost in translation/logo.png",
-    html: "games/lost in translation/index.html",
   },
   {
     name: "Moto X3M",
@@ -633,6 +633,11 @@ const games = [
     name: "Woodworm",
     image: "games/woodworm/logo.png",
     html: "games/woodworm/index.html",
+  },
+  {
+    name: "Word String",
+    image: "games/word string/logo.png",
+    html: "games/word string/index.html",
   },
   {
     name: "Worlds Hardest Game",
