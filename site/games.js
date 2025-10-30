@@ -275,6 +275,11 @@ const games = [
     html: "games/fireboy and watergirl 4/index.html",
   },
   {
+    name: "Generic Fighter Maybe",
+    image: "games/generic fighter maybe/logo.png",
+    html: "games/generic fighter maybe/index.html",
+  },
+  {
     name: "Getaway Shootout",
     image: "games/getaway shootout/logo.png",
     html: "games/getaway shootout/index.html",
