@@ -1,5 +1,10 @@
 const games = [
   {
+    name: "GAME SUGGESTIONS",
+    image: "site/assets/gamesuggestion.png",
+    html: "site/gamesuggestion.html",
+  },
+  {
     name: "1v1.lol",
     image: "games/1v1 lol/1v1lollogo.png",
     html: "games/1v1 lol/index.html",
