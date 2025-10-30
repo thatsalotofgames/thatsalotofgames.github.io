@@ -210,11 +210,6 @@ const games = [
     html: "games/dodge and slash/index.html",
   },
   {
-    name: "Drift Hunters",
-    image: "games/drift hunters/logo.png",
-    html: "games/drift hunters/index.html",
-  },
-  {
     name: "driftr",
     image: "games/driftr/logo.png",
     html: "games/driftr/index.html",
