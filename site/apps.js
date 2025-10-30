@@ -45,6 +45,11 @@ const apps = [
     html: "apps/helios/index.html",
   },
   {
+    name: "Iframe Tester",
+    image: "apps/iframe tester/logo.png",
+    html: "apps/iframe tester/index.html",
+  },
+  {
     name: "EmulatorJS",
     image: "apps/emulatorjs/logo.png",
     html: "apps/emulatorjs/index.html",

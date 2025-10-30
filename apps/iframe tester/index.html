@@ -1,0 +1,135 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<title>Iframe Tester</title>
+        <meta name="description" content="Test any webpage being rendered in an iframe">
+        <meta property="og:title" content="Render page in iframe online"/>
+        <meta property="og:description" content="Tool to load up any webpage in an iframe to test for display, CORS settings, and third-party cookies"/>
+        <meta property="og:image" content="https://iframetester.com/img/icon.png" />
+        <meta property="og:url" content="https://iframetester.com" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="598" />
+        <meta property="og:image:height" content="534" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" type="image/ico" href="./img/icon.ico" />
+
+
+        <link rel="stylesheet" href="./css/vendored/normalize.css">
+        <link rel="stylesheet" href="./css/vendored/flexbox.css">
+        <link rel="stylesheet" href="./css/vendored/font-awesome.min.css">
+        <link rel="stylesheet" href="./css/index.css">
+
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- <script type='text/javascript' src="./js/vendored/jquery-plugins.js"></script> -->
+        <script type='text/javascript' src="./js/index.js"></script>
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158633083-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-158633083-1');
+        </script>
+
+        <!-- GA4 Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HBCD5GH54G"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-HBCD5GH54G');
+        </script>
+
+        <!-- Adsense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9965878625363779"
+            crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+        <header>
+            <h1>Iframe Tester</h1>
+        </header>
+        <main>
+            <div class="search-bar-container">
+                <input id="url-search" type="url" placeholder="Enter a url"></input>
+                <button onclick="submit()">Render iframe</button>
+            </div>
+            <div class="wrapper">
+                <div class="window"></div>
+                <div class="middle">
+
+                    <a class="affiliate" target="_blank" href="https://gummysearch.com/?utm_source=iframetester.com"
+                        onclick="trackEvent('AffiliateClick', {'name': 'GummySearch', 'location': 'top'})"
+                    >
+                        GummySearch - Unlock Reddit superpowers with the first research tool for Reddit →
+                    </a>
+
+                    <div class="iframe-container">
+                        <iframe id="iframe-window">
+                            <p>Your browser does not support iframes.</p>
+                        </iframe>
+                        <div id="blank-state">
+                            <h2>Test a url to see if it can be displayed in an iframe</h2>
+                            <p>Not all web pages can be embedded in an iframe.</p>
+                            <p>This setting is determined by the "X-Frame-Options" sent from the page's server.</p>
+                        </div>
+                        <div id="loading-state">
+                            <h2>Loading...</h2>
+                        </div>
+                        <div id="error-message">
+                            <h2 id="error-text"></h2>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>About this site</h2>
+                        <p>iframetester.com is the easiest way to test if a particular webpage can be embedded in an iframe. It is primarily a tool for developers to test their web page to ensure their application behaves as expected on a third-party site.</p>
+
+                        <h2>What is an iframe?</h2>
+                        <p>An iframe is an HTML element which can embed another webpage on a parent page. It is commonly used to display third-party content like videos, advertisements, and small web apps designed to be used on multiple websites. The URL to be embedded is supplied by the "src=" parameter on the iframe element. Besides the width/height of the iframe, a webpage embedding a url in an iframe has no control over the embedded site's content, it just supplies the URL to be embedded.</p>
+
+                        <h2>What determines if a webpage can be embedded in an iframe?</h2>
+                        <p>Not all web pages can be rendered in an iframe. This is determined by certain headers that are sent in a web request for a particular website. This header is called "X-Frame-Options" and the options are DENY, SAMEORIGIN ,and ALLOW-FROM=url. This allows a website owner to determine which websites (if any) can embed their content, and browsers abide by these headers. To learn more about this header, see <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options" target="_blank">this article</a>.</p>
+
+                        <h2>How to iframe a webpage</h2>
+                        <div>
+                            <div>Here is an example of an HTML document with an iframe in it. Please note that the example url cannot be iframed due to the header mentioned above.</div>
+<pre>
+<code>
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+        &lt;head&gt;&lt;/head&gt;
+        &lt;body&gt;
+            &lt;iframe src=&quot;https://google.com&quot; width=&quot;100%&quot; height=&quot;400&quot; /&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;
+
+</code>
+</pre>
+                        </div>
+
+                        <h2>How can I test if a webpage can be iframed?</h2>
+                        <p>Enter a url in the search bar above and press "Render Iframe". If you see the webpage load, the page is allowed to be iframed. If you see an error message like "refused to connect", that means that the webpage is not allowed to be iframed on this site. Open the developer console to see the specific error.</p>
+
+                        <h2>What differentiates an iframed webpage from a regular one?</h2>
+                        <p>Besides the "X-Frame-Options" header that determines if a webpage can be iframed, there are other things to consider. For privacy and security reasons, webpages embedded in an iframe might be restricted in their ability to set/read browser cookies. This is important to consider if your embedded web app uses cookies for user authentication.</p>
+
+                        <a class="affiliate" target="_blank" href="https://gummysearch.com/?utm_source=iframetester.com"
+                            onclick="trackEvent('AffiliateClick', {'name': 'GummySearch', 'location': 'bottom'})"
+                        >
+                            GummySearch - Unlock Reddit superpowers with the first research tool for Reddit →
+                        </a>
+                    </div>
+                </div>
+                <div class="window"></div>
+            </div>
+        </main>
+        <footer>
+            
+        </footer>
+    </body>
+</html>
