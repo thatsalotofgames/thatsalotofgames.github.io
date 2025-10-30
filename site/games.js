@@ -410,6 +410,11 @@ const games = [
     html: "games/poooooool/index.html",
   },
   {
+    name: "PortaBoy+",
+    image: "games/portaboy+/logo.png",
+    html: "games/portaboy+/index.html",
+  },
+  {
     name: "Protektor",
     image: "games/protektor/logo.png",
     html: "games/protektor/index.html",
