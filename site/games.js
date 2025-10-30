@@ -55,6 +55,11 @@ const games = [
     html: "games/a small world cup/index.html",
   },
   {
+    name: "Bad Monday Simulator",
+    image: "games/bad monday simulator/logo.png",
+    html: "games/bad monday simulator/index.html",
+  },
+  {
     name: "Bad Time Simulator",
     image: "games/bad time simulator/icon-256.png",
     html: "games/bad time simulator/index.html",
@@ -368,6 +373,11 @@ const games = [
     name: "Operius",
     image: "games/operius/logo.png",
     html: "games/operius/index.html",
+  },
+  {
+    name: "Outhold",
+    image: "games/outhold/logo.png",
+    html: "games/outhold/index.html",
   },
   {
     name: "Papers, Please",
