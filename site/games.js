@@ -25,6 +25,21 @@ const games = [
     html: "games/flash games/40xescape.html",
   },
   {
+    name: "Achievement Unlocked",
+    image: "games/flash games/images/achievementunlocked.png",
+    html: "games/flash games/achievementunlocked.html",
+  },
+  {
+    name: "Achievement Unlocked 2",
+    image: "games/flash games/images/achievementunlocked2.png",
+    html: "games/flash games/achievementunlocked2.html",
+  },
+  {
+    name: "Achievement Unlocked 3",
+    image: "games/flash games/images/achievementunlocked3.png",
+    html: "games/flash games/achievementunlocked3.html",
+  },
+  {
     name: "Age Of War",
     image: "games/flash games/images/ageofwar.png",
     html: "games/flash games/ageofwar.html",
