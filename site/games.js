@@ -445,6 +445,11 @@ const games = [
     html: "games/stickman hook/index.html",
   },
   {
+    name: "Sugar, Sugar",
+    image: "games/flash games/images/sugarsugar.png",
+    html: "games/flash games/sugarsugar.html",
+  },
+  {
     name: "Superhot",
     image: "games/superhot/hot.jpg",
     html: "games/superhot/index.html",
