@@ -225,9 +225,14 @@ const games = [
     html: "games/dud/index.html",
   },
   {
-    name: "Dungeons And Degenerate Gamblers",
-    image: "games/dungeons and degenerate gamblers/logo.png",
-    html: "games/dungeons and degenerate gamblers/index.html",
+    name: "egg",
+    image: "games/egg/index.icon.png",
+    html: "games/egg/index.html",
+  },
+  {
+    name: "Picohot",
+    image: "games/picohot/logo.png",
+    html: "games/picohot/index.html",
   },
   {
     name: "Elastic Face",
