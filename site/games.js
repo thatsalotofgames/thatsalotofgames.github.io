@@ -125,6 +125,11 @@ const games = [
     html: "games/break the tower/index.html",
   },
   {
+    name: "Bust-a-Loop",
+    image: "games/bust-a-loop/logo.png",
+    html: "games/bust-a-loop/index.html",
+  },
+  {
     name: "Candy Box 2",
     image: "games/candy box 2/logo.png",
     html: "games/candy box 2/index.html",
