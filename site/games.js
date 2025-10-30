@@ -320,6 +320,11 @@ const games = [
     html: "games/hyper jump/index.html",
   },
   {
+    name: "I Didn't Cheat",
+    image: "games/i didnt cheat/logo.png",
+    html: "games/i didnt cheat/index.html",
+  },
+  {
     name: "Idle Boss Rush",
     image: "games/idle boss rush/logo.png",
     html: "games/idle boss rush/index.html",

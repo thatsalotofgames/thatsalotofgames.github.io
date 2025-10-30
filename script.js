@@ -17,6 +17,7 @@ const backBtn = document.getElementById("backBtn");
 const fullscreenBtn = document.getElementById("fullscreenBtn");
 const blankBtn = document.getElementById("blankBtn");
 const blobBtn = document.getElementById("blobBtn");
+const downloadBtn = document.getElementById("downloadBtn");
 const blobModal = document.getElementById("blobModal");
 const blobUrlDisplay = document.getElementById("blobUrlDisplay");
 const copyBlobBtn = document.getElementById("copyBlobBtn");
@@ -235,6 +236,35 @@ blobBtn.addEventListener("click", async () => {
   } catch (error) {
     console.error("Error generating blob URL:", error);
     alert("Error generating blob URL");
+  }
+});
+
+downloadBtn.addEventListener("click", async () => {
+  try {
+    const response = await fetch(currentGameUrl);
+    let html = await response.text();
+
+    const gamePath = currentGameUrl.replace(/^\//, "");
+    const baseUrl = `https://raw.githack.com/thatsalotofgames/thatsalotofgames.github.io/main/${gamePath.substring(
+      0,
+      gamePath.lastIndexOf("/") + 1
+    )}`;
+
+    html = html.replace(/<head>/i, `<head><base href="${baseUrl}">`);
+
+    const blob = new Blob([html], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${gameTitle.textContent}.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error("Error downloading game:", error);
+    alert("Error downloading game");
   }
 });
 
