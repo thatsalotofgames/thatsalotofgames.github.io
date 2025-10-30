@@ -310,6 +310,11 @@ const games = [
     html: "games/grapple tongue/index.html",
   },
   {
+    name: "Gun Nut",
+    image: "games/gun nut/logo.png",
+    html: "games/gun nut/index.html",
+  },
+  {
     name: "HELP! NO BRAKE",
     image: "games/help no brake/logo.png",
     html: "games/help no brake/index.html",
