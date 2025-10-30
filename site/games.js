@@ -235,6 +235,11 @@ const games = [
     html: "games/evil glitch/index.html",
   },
   {
+    name: "Fear Assessment",
+    image: "games/fear assessment/icon-256.png",
+    html: "games/fear assessments/index.html",
+  },
+  {
     name: "Fireboy And Watergirl",
     image: "games/flash games/images/fireboyandwatergirl.png",
     html: "games/flash games/fireboyandwatergirl.html",
