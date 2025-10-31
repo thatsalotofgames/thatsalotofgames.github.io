@@ -195,9 +195,14 @@ const games = [
     html: "games/flash games/dealornodeal.html",
   },
   {
-    name: "Death Run 3D",
-    image: "games/death run 3d/logo.png",
-    html: "games/death run 3d/index.html",
+    name: "Deltatraveler",
+    image: "games/deltatraveler/logo.png",
+    html: "games/deltatraveler/index.html",
+  },
+  {
+    name: "Pogo 3D",
+    image: "games/pogo 3d/logo.png",
+    html: "games/pogo 3d/index.html",
   },
   {
     name: "Die In A Dungeon",
@@ -360,6 +365,11 @@ const games = [
     html: "games/karlson/index.html",
   },
   {
+    name: "Kill The Ice Age Baby Adventure",
+    image: "games/kill the ice age baby adventure/logo.png",
+    html: "games/kill the ice age baby adventure/index.html",
+  },
+  {
     name: "Kitchen Gun Game",
     image: "games/kitchen gun game/logo.png",
     html: "games/kitchen gun game/index.html",
@@ -373,6 +383,11 @@ const games = [
     name: "Level Devil",
     image: "games/level devil/logo.png",
     html: "games/level devil/index.html",
+  },
+  {
+    name: "Little Runmo",
+    image: "games/little runmo/logo.png",
+    html: "games/little runmo/index.html",
   },
   {
     name: "Monster Battlegrounds",
@@ -453,6 +468,11 @@ const games = [
     name: "Ploink",
     image: "games/ploink/logo.png",
     html: "games/ploink/index.html",
+  },
+  {
+    name: "Pogo 3D",
+    image: "games/pogo 3d/logo.png",
+    html: "games/pogo 3d/index.html",
   },
   {
     name: "Poooooool",
