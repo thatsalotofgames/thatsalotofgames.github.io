@@ -36,9 +36,11 @@ function getParts(file, start, end) {
   }
   return parts;
 }
-Promise.all([mergeFiles(getParts("index.pck", 1, 4))]).then(([pckUrl]) => {
+Promise.all([
+  mergeFiles(getParts("MonsterBattleground_v_0_4_1.pck", 1, 3)),
+]).then(([pckUrl]) => {
   window.fetch = async function (url, ...args) {
-    if (url.endsWith("index.pck")) {
+    if (url.endsWith("MonsterBattleground_v_0_4_1.pck")) {
       return originalFetch(pckUrl, ...args);
     } else {
       return originalFetch(url, ...args);
