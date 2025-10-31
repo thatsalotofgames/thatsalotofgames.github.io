@@ -195,11 +195,6 @@ const games = [
     html: "games/flash games/dealornodeal.html",
   },
   {
-    name: "Deltatraveler",
-    image: "games/deltatraveler/logo.png",
-    html: "games/deltatraveler/index.html",
-  },
-  {
     name: "Pogo 3D",
     image: "games/pogo 3d/logo.png",
     html: "games/pogo 3d/index.html",
