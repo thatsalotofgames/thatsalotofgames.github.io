@@ -160,6 +160,11 @@ const games = [
     html: "games/combo pool/index.html",
   },
   {
+    name: "Couch 2048",
+    image: "games/couch 2048/logo.png",
+    html: "games/couch 2048/index.html",
+  },
+  {
     name: "Cubefield",
     image: "games/flash games/images/cubefield.png",
     html: "games/flash games/cubefield.html",
