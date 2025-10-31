@@ -215,6 +215,11 @@ const games = [
     html: "games/dodge and slash/index.html",
   },
   {
+    name: "Drift Mania",
+    image: "games/drift mania/logo.png",
+    html: "games/drift mania/index.html",
+  },
+  {
     name: "driftr",
     image: "games/driftr/logo.png",
     html: "games/driftr/index.html",
@@ -703,5 +708,10 @@ const games = [
     name: "Worlds Hardest Game 4",
     image: "games/flash games/images/worldshardestgame4.png",
     html: "games/flash games/worldshardestgame4.html",
+  },
+  {
+    name: "xx142.b2.exe",
+    image: "games/xx142.b2.exe/logo.png",
+    html: "games/xx142.b2.exe/index.html",
   },
 ];
