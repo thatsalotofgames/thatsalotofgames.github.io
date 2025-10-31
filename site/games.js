@@ -445,6 +445,11 @@ const games = [
     html: "games/planet life/index.html",
   },
   {
+    name: "Ploink",
+    image: "games/ploink/logo.png",
+    html: "games/ploink/index.html",
+  },
+  {
     name: "Poooooool",
     image: "games/poooooool/logo.png",
     html: "games/poooooool/index.html",
@@ -608,6 +613,11 @@ const games = [
     name: "Tube Jumpers",
     image: "games/tube jumpers/logo.png",
     html: "games/tube jumpers/index.html",
+  },
+  {
+    name: "Ultrakill Prelude",
+    image: "games/ultrakill prelude/logo.png",
+    html: "games/ultrakill prelude/index.html",
   },
   {
     name: "Toss The Turtle",
