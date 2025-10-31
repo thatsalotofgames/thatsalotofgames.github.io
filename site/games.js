@@ -375,6 +375,11 @@ const games = [
     html: "games/level devil/index.html",
   },
   {
+    name: "Monster Battlegrounds",
+    image: "games/monster battlegrounds/MonsterBattleground_v_0_4_1.icon.png",
+    html: "games/monster battlegrounds/index.html",
+  },
+  {
     name: "Moto X3M",
     image: "games/moto x3m/logo.png",
     html: "games/moto x3m/index.html",
