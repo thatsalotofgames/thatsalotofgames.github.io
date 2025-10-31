@@ -375,6 +375,11 @@ const games = [
     html: "games/level devil/index.html",
   },
   {
+    name: "Little Runmo",
+    image: "games/little runmo/logo.png",
+    html: "games/little runmo/index.html",
+  },
+  {
     name: "Monster Battlegrounds",
     image: "games/monster battlegrounds/MonsterBattleground_v_0_4_1.icon.png",
     html: "games/monster battlegrounds/index.html",
