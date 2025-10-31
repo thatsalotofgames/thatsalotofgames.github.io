@@ -350,6 +350,11 @@ const games = [
     html: "games/just one boss/index.html",
   },
   {
+    name: "Karlson",
+    image: "games/karlson/logo.png",
+    html: "games/karlson/index.html",
+  },
+  {
     name: "Kitchen Gun Game",
     image: "games/kitchen gun game/logo.png",
     html: "games/kitchen gun game/index.html",
