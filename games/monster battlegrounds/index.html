@@ -201,7 +201,7 @@
       };
       var engine = new Engine(GODOT_CONFIG);
 
-      (function () {
+      window.godotrunfunction = function () {
         const INDETERMINATE_STATUS_STEP_MS = 100;
         var statusProgress = document.getElementById("status-progress");
         var statusProgressInner = document.getElementById(
@@ -309,7 +309,7 @@
               initializing = false;
             }, displayFailureNotice);
         }
-      })();
+      };
       //]]>
     </script>
   </body>
